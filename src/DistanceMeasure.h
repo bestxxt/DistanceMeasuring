@@ -5,12 +5,13 @@
 #include <U8g2lib.h>
 #include <HCSR04.h>
 #include <MyShell.h>
-
-#ifdef U8X8_HAVE_HW_SPI
+#include <WiFi.h>
 #include <SPI.h>
-#endif
-#ifdef U8X8_HAVE_HW_I2C
 #include <Wire.h>
-#endif
+#include <MyDistance.h>
+#include "BLE.h"
+#include "BluetoothSerial.h"
+
+extern BluetoothSerial SerialBT; 
 
 #endif

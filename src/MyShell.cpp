@@ -1,5 +1,37 @@
 #include <DistanceMeasure.h>
 
+uint8_t BT_distance_output = false;
+uint8_t Serial_distance_output = false; 
+uint8_t Oled_distance_output = true; 
+
+void Data_Printf(double data)
+{
+    if(BT_distance_output)SerialBT.println(data);
+    if(Serial_distance_output)Serial.println(data);
+    
+}
+
+void BT_output_no(void)
+{
+    BT_distance_output = true;
+}
+
+void BT_output_off(void)
+{
+    BT_distance_output = false;
+}
+
+void serial_output_on(void)
+{
+    Serial_distance_output = true;
+}
+
+void serial_output_off(void)
+{
+    Serial_distance_output = false;
+}
+
+
 int command_test(int argc, char** argv)
 {
     int i;
@@ -24,14 +56,19 @@ void shellInit(void)
 {
     shell_init(shell_reader, shell_writer, 0);
     shell_register((shell_program_t) command_test, PSTR("test"));
+    shell_register((shell_program_t) BT_output_no, PSTR("bt-on"));
+    shell_register((shell_program_t) BT_output_off, PSTR("bt-off"));
+    shell_register((shell_program_t) serial_output_on, PSTR("ser-on"));
+    shell_register((shell_program_t) serial_output_off, PSTR("ser-off"));
+
 }
 
 
 void ICACHE_RAM_ATTR ShellLoop(void)
 {
     //命令解析器
-     while (Serial.available()) shell_task();
-    // while (Serial.available() || SerialBT.available()) shell_task();
+    //  while (Serial.available()) shell_task();
+    while (Serial.available() || SerialBT.available()) shell_task();
 }
 
 
@@ -48,11 +85,11 @@ int shell_reader(char* data)
         *data = Serial.read();
         return 1;
     }
-    // if (SerialBT.available()) //蓝牙串口定义
-    // {
-    //     *data = SerialBT.read();
-    //     return 1;
-    // }
+    if (SerialBT.available()) //蓝牙串口定义
+    {
+        *data = SerialBT.read();
+        return 1;
+    }
     return 0;
 }
 
@@ -67,5 +104,5 @@ void shell_writer(char data)
 {
     //return; //阻止不干净的输出
     Serial.write(data);
-    // SerialBT.write(data);//蓝牙串口定义
+    SerialBT.write(data);//蓝牙串口定义
 }
