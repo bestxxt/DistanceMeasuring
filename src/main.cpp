@@ -18,7 +18,7 @@ void setup(void) {
 
 }
 
-void loop(void) 
+void loop(void)  
 {
   double distance=0;
   distance = distanceSensor.measureDistanceCm();
