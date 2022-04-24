@@ -14,23 +14,36 @@ void Data_Printf(double data)
 void BT_output_no(void)
 {
     BT_distance_output = true;
+    BtOutput=true;
 }
 
 void BT_output_off(void)
 {
     BT_distance_output = false;
+    BtOutput=false;
 }
 
 void serial_output_on(void)
 {
-    Serial_distance_output = true;
+    AlarmOut = true;
 }
 
 void serial_output_off(void)
 {
-    Serial_distance_output = false;
+    AlarmOut = false;
 }
 
+void work_on(void)
+{
+    SetSound(Beep3);
+    Work = true;
+}
+
+void work_off(void)
+{
+    SetSound(Beep4);
+    Work = false;
+}
 
 int command_test(int argc, char** argv)
 {
@@ -58,9 +71,10 @@ void shellInit(void)
     shell_register((shell_program_t) command_test, PSTR("test"));
     shell_register((shell_program_t) BT_output_no, PSTR("bt-on"));
     shell_register((shell_program_t) BT_output_off, PSTR("bt-off"));
-    shell_register((shell_program_t) serial_output_on, PSTR("ser-on"));
-    shell_register((shell_program_t) serial_output_off, PSTR("ser-off"));
-
+    shell_register((shell_program_t) serial_output_on, PSTR("alarm-on"));
+    shell_register((shell_program_t) serial_output_off, PSTR("alarm-off"));
+    shell_register((shell_program_t) work_on, PSTR("sys_on"));
+    shell_register((shell_program_t) work_off, PSTR("sys_off"));
 }
 
 
