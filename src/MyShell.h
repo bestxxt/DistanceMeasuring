@@ -15,6 +15,4 @@ void shell_SendDatas(uint8_t buf[], uint32_t size);
 int command_test(int argc, char** argv);
 void Data_Printf(double data);
 
-void OLED_ScreenshotInit(void);
-void OLED_ScreenshotPrint(void);
 #endif

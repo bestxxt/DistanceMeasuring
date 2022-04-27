@@ -72,5 +72,7 @@ extern uint8_t c5[];
 extern uint8_t c6[];
 extern uint8_t c7[];
 extern uint8_t* C_table[];
+extern uint8_t alarm_photo[];
+extern uint8_t stop_photo[];
 
 #endif

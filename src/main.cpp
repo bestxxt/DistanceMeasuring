@@ -23,6 +23,7 @@ void AlarmLoop(int16_t nub)
     {
       if(millis()-LastTime>500)
       {
+        Draw_Slow_Bitmap(103, 0, alarm_photo, 24, 24);
         SetSound(alarm1);
         LastTime=millis();
       }
@@ -31,6 +32,7 @@ void AlarmLoop(int16_t nub)
     {
       if(millis()-LastTime>200)
       {
+        Draw_Slow_Bitmap(103, 0, stop_photo, 24, 24);
         SetSound(alarm2);
         LastTime=millis();
       }
@@ -44,6 +46,15 @@ void AlarmLoop(int16_t nub)
       }
     }
   }
+  if(nub<30 && nub >=15)
+  {  
+    Draw_Slow_Bitmap(103, 0, alarm_photo, 24, 24);
+  }
+  else if(nub<15 && nub>=0)
+  {
+    Draw_Slow_Bitmap(103, 0, stop_photo, 24, 24);
+  }
+
 }
 
 void setup(void) {
@@ -75,9 +86,10 @@ void loop(void)
     Disp.setCursor(0, 63);
     Disp.setFont(u8g2_font_logisoso24_tr);
     Disp.printf("%.01fcm",distance);
-    if (BtOutput){Draw_Slow_Bitmap(0, 0, IMG_BLE_S, 9, 11);} 
-    Disp.sendBuffer();
+    if (BtOutput){Draw_Slow_Bitmap(0, 0, IMG_BLE_S, 9, 11);}  
     AlarmLoop(int16_t(distance));
+    
+    Disp.sendBuffer();
   }
   else
   {

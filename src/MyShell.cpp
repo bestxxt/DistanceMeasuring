@@ -73,8 +73,9 @@ void shellInit(void)
     shell_register((shell_program_t) BT_output_off, PSTR("bt-off"));
     shell_register((shell_program_t) serial_output_on, PSTR("alarm-on"));
     shell_register((shell_program_t) serial_output_off, PSTR("alarm-off"));
-    shell_register((shell_program_t) work_on, PSTR("sys_on"));
-    shell_register((shell_program_t) work_off, PSTR("sys_off"));
+    shell_register((shell_program_t) work_on, PSTR("sys-on"));
+    shell_register((shell_program_t) work_off, PSTR("sys-off"));
+    
 }
 
 
