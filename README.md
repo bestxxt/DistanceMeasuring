@@ -41,3 +41,5 @@ This project utilizes an ESP32 microcontroller to interface with an ultrasonic s
 ### V 0.3
 - Utilized ESP32's built-in Bluetooth for remote configuration and debugging.
 
+---
+If you like my project, please give me a ⭐, thank you~
